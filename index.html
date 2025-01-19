@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
+            line-height: 1.6;
         }
         .container {
             width: 100%;
@@ -36,9 +37,33 @@
         }
         iframe {
             width: 100%;
-            height: 100vh; /* PDF ocupa toda a altura da tela */
+            height: 100vh;
             border: none;
             display: none; /* Inicialmente escondido */
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+        a {
+            display: block;
+            margin: 5px 0;
+            font-size: 16px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            font-size: 12px;
+            margin: 20px;
+            padding: 10px;
+            color: #555;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -47,9 +72,26 @@
         <h1>Visualizador de PDF</h1>
         <input type="text" id="pdf-url" placeholder="Insira o link do PDF" />
         <button onclick="loadPDF()">Abrir PDF</button>
+        <h2>Contos de ficção científica de autores promissores da atualidade</h2>
+        <a href="https://2743b480-46c1-47da-8339-9e531b953868.filesusr.com/ugd/1515b7_913b6b81781e4b72bcc5af734d0bcd08.pdf" target="_blank">O Ocaso da Ignorância</a>
+        <a href="https://2743b480-46c1-47da-8339-9e531b953868.filesusr.com/ugd/1515b7_7442b74aa8554fb4a40147c42e28ed33.pdf" target="_blank">Xandra</a>
+        <a href="https://2743b480-46c1-47da-8339-9e531b953868.filesusr.com/ugd/1515b7_ad783bf0d1c14e55bc9a5beab330645b.pdf" target="_blank">A Vontade do Universo</a>
+        <a href="https://2743b480-46c1-47da-8339-9e531b953868.filesusr.com/ugd/1515b7_a6c576c0ac854eedb20ec903525b5280.pdf" target="_blank">Áureo</a>
+        <a href="https://2743b480-46c1-47da-8339-9e531b953868.filesusr.com/ugd/1515b7_ea0dbc0e5b1948a28b98bb577eae7ae5.pdf" target="_blank">Bootstrap TV</a>
+        <a href="https://2743b480-46c1-47da-8339-9e531b953868.filesusr.com/ugd/1515b7_e3864069c67a4410bc7e8eefface6e44.pdf" target="_blank">Telecinesia</a>
     </div>
     <iframe id="pdf-viewer" src="" title="Visualizador de PDF"></iframe>
-
+    <div class="note">
+        <p>
+            Este site foi desenvolvido para atender a uma necessidade específica: visualizar arquivos PDF diretamente em navegadores simples, como aqueles encontrados em Smart TVs ou dispositivos como o Alexa Echo Show. Muitos navegadores desses dispositivos não permitem a instalação de aplicativos adicionais nem oferecem suporte completo a recursos avançados de visualização de PDF.
+        </p>
+        <p>
+            Importante: o endereço inserido deve apontar diretamente para o arquivo PDF (ou seja, deve terminar em ".pdf"). Links compartilhados de serviços como Google Drive ou Dropbox geralmente não funcionam diretamente, pois exigem processamento adicional.
+        </p>
+        <p>
+            Este site não armazena arquivos nem faz download automático. Ele apenas oferece uma interface simples para visualização, garantindo que dispositivos com recursos limitados possam acessar arquivos PDF sem problemas.
+        </p>
+    </div>
     <script>
         function loadPDF() {
             const url = document.getElementById('pdf-url').value;
