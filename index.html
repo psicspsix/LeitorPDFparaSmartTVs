@@ -70,8 +70,13 @@
 <body>
     <div class="container" id="controls">
         <h1>Visualizador de PDF</h1>
+        <!-- Campo para links -->
         <input type="text" id="pdf-url" placeholder="Insira o link do PDF" />
-        <button onclick="loadPDF()">Abrir PDF</button>
+        <button onclick="loadPDF()">Abrir PDF por URL</button>
+        <p>OU</p>
+        <!-- Campo para upload de arquivos -->
+        <input type="file" id="pdf-file" accept="application/pdf" />
+        <button onclick="uploadPDF()">Abrir PDF Local</button>
         <h2>CONTOS DE FICÇÃO CIENTÍFICA DE AUTORES PROMISSORES DA ATUALIDADE</h2>
         <p class="small-note">(Os links abaixo utilizam javascript e, normalmente, são incompatíveis com navegadores de Smart TVs)</p>
         <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/O%20Ocaso%20da%20Ignorância.pdf" target="_blank">O Ocaso da Ignorância</a>
@@ -88,7 +93,7 @@
     </div>
     <iframe id="pdf-viewer" src="" title="Visualizador de PDF"></iframe>
     <div class="note">
-        <p>
+         <p>
             Este site foi desenvolvido para atender a uma necessidade específica: visualizar arquivos PDF diretamente em navegadores simples, como aqueles encontrados em Smart TVs ou dispositivos como o Alexa Echo Show. Muitos navegadores desses dispositivos não permitem a instalação de aplicativos adicionais nem oferecem suporte completo a recursos avançados de visualização de PDF.
         </p>
         <p>
@@ -109,6 +114,22 @@
                 controls.style.display = 'none'; // Esconde os controles
             } else {
                 alert('Por favor, insira um link válido.');
+            }
+        }
+
+        function uploadPDF() {
+            const fileInput = document.getElementById('pdf-file');
+            const viewer = document.getElementById('pdf-viewer');
+            const controls = document.getElementById('controls');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                viewer.src = fileURL;
+                viewer.style.display = 'block'; // Mostra o PDF
+                controls.style.display = 'none'; // Esconde os controles
+            } else {
+                alert('Por favor, selecione um arquivo PDF.');
             }
         }
     </script>
