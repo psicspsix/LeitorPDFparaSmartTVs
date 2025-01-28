@@ -9,7 +9,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #121212; /* Fundo escuro */
+            color: #e0e0e0; /* Texto claro */
             line-height: 1.6;
         }
         .container {
@@ -22,15 +23,20 @@
             padding: 10px;
             margin-bottom: 10px;
             font-size: 16px;
+            color: #121212; /* Texto escuro para contraste */
+            background-color: #e0e0e0; /* Fundo claro para contraste */
+            border: none;
+            border-radius: 5px;
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             background-color: #007BFF;
-            color: white;
+            color: #e0e0e0;
             border: none;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
         button:hover {
             background-color: #0056b3;
@@ -44,13 +50,13 @@
         h2 {
             margin-top: 20px;
             font-size: 20px;
-            color: #333;
+            color: #ffffff;
         }
         a {
             display: block;
             margin: 5px 0;
             font-size: 16px;
-            color: #007BFF;
+            color: #4db8ff;
             text-decoration: none;
         }
         a:hover {
@@ -60,16 +66,16 @@
             font-size: 12px;
             margin: 20px;
             padding: 10px;
-            color: #555;
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
+            color: #b3b3b3;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
             border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container" id="controls">
-        <h1>Visualizador de PDF</h1>
+        <h1>VISUALIZADOR DE PDFs</h1>
         <!-- Campo para links -->
         <input type="text" id="pdf-url" placeholder="Insira o link do PDF" />
         <button onclick="loadPDF()">Abrir PDF por URL</button>
