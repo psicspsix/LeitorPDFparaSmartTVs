@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Fundo escuro */
+            color: #e0e0e0; /* Texto claro */
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #121212; /* Texto escuro para contraste */
+            background-color: #e0e0e0; /* Fundo claro para contraste */
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: none; /* Inicialmente escondido */
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        a {
+            display: block;
+            margin: 5px 0;
+            font-size: 16px;
+            color: #4db8ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            font-size: 12px;
+            margin: 20px;
+            padding: 10px;
+            color: #b3b3b3;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="controls">
+        <h1>VISUALIZADOR DE PDFs PARA NAVEGADORES LIMITADOS</h1>
+        <!-- Campo para links -->
+        <input type="text" id="pdf-url" placeholder="Insira o link do PDF" />
+        <button onclick="loadPDF()">Abrir PDF por URL</button>
+        <p>OU</p>
+        <!-- Campo para upload de arquivos -->
+        <input type="file" id="pdf-file" accept="application/pdf" />
+        <button onclick="uploadPDF()">Abrir PDF Local</button>
+        <h2>CONTOS DE FICÇÃO CIENTÍFICA DE AUTORES PROMISSORES DA ATUALIDADE</h2>
+        <p class="small-note">(Os links abaixo utilizam javascript e, normalmente, são incompatíveis com navegadores de Smart TVs)</p>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/O%20Ocaso%20da%20Ignorância.pdf" target="_blank">O Ocaso da Ignorância</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Xandra.pdf" target="_blank">Xandra</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/A%20Vontade%20do%20Universo.pdf" target="_blank">A Vontade do Universo</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Áureo%202025.pdf" target="_blank">Áureo (em progresso)</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Bootstrap%20TV.pdf" target="_blank">Bootstrap TV (em progresso)</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Telecinesia.pdf" target="_blank">Telecinesia</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Revista%20Creepsow%201.pdf#zoom=page-width" target="_blank">Creepshow 1 - Stephen King (Em Inglês)</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Revista%20Creepsow%201%20(Espanhol).pdf#zoom=page-width" target="_blank">Creepshow 1 - Stephen King (Em Espanhol)</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Revista%20Creepshow%201%20(Portugues)-compactado%20ao%20maximo.pdf#zoom=page-width" target="_blank">Creepshow 1 - Stephen King (Em Português)</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Nanites%20-%20Engenheiros%20da%20Ordem%20e%20do%20Caos.pdf#zoom=page-width" target="_blank">Livro Nanite - Engenheiros da Ordem... e do Caos (em fase embrionária)</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/25-03-2025%20-%20RASCUNHO%20FINAL%20-%20VERSÃO%203%20-%20Contrarrazões.pdf#zoom=page-width" target="_blank">CONTRARRAZÕES (OLD) NO PROCESSO DA MEDSÊNIOR</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/Todas%20as%20respostas%20de%2007-04-2025%20JUNTAS.pdf#zoom=page-width" target="_blank">DUAS RÉPLICAS E CONTRARRAZÕES NO PROCESSO DA MEDSÊNIOR</a>
+        <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/psicspsix/LeitorPDFparaSmartTVs/main/PDFs/CursoIAGenerativa.pdf#zoom=page-width" target="_blank">Slides do Curso de IA Generativa</a>
+        <h2>PARA MUITAS HORAS DE ENTRETENIMENTO E POSSÍVEL REFLEXÃO VISITE O SITE ABAIXO</h2>
+        <a href="http://surl.li/fcxdga" target="_blank">Ponto de Partida para Potenciais Posicionamentos Polêmicos - P6</a>
+    </div>
+    <iframe id="pdf-viewer" src="" title="Visualizador de PDF"></iframe>
+    <div class="note">
+         <p>
+            Este site foi desenvolvido para atender a uma necessidade específica: visualizar arquivos PDF diretamente em navegadores simples, como aqueles encontrados em Smart TVs ou dispositivos como o Alexa Echo Show. Muitos navegadores desses dispositivos não permitem a instalação de aplicativos adicionais nem oferecem suporte completo a recursos avançados de visualização de PDF.
+        </p>
+        <p>
+            Importante: o endereço inserido deve apontar diretamente para o arquivo PDF (ou seja, deve terminar em ".pdf"). Links compartilhados de serviços como Google Drive ou Dropbox geralmente não funcionam diretamente, pois exigem processamento adicional.
+        </p>
+        <p>
+            Este site não armazena arquivos nem faz download automático. Ele apenas oferece uma interface simples para visualização, garantindo que dispositivos com recursos limitados possam acessar arquivos PDF sem problemas.
+        </p>
+    </div>
+    <script>
+        function loadPDF() {
+            const url = document.getElementById('pdf-url').value;
+            const viewer = document.getElementById('pdf-viewer');
+            const controls = document.getElementById('controls');
+            if (url) {
+                viewer.src = url;
+                viewer.style.display = 'block'; // Mostra o PDF
+                controls.style.display = 'none'; // Esconde os controles
+            } else {
+                alert('Por favor, insira um link válido.');
+            }
+        }
+
+        function uploadPDF() {
+            const fileInput = document.getElementById('pdf-file');
+            const viewer = document.getElementById('pdf-viewer');
+            const controls = document.getElementById('controls');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                viewer.src = fileURL;
+                viewer.style.display = 'block'; // Mostra o PDF
+                controls.style.display = 'none'; // Esconde os controles
+            } else {
+                alert('Por favor, selecione um arquivo PDF.');
+            }
+        }
+    </script>
+</body>
+</html>
